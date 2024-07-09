@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const CustomError = require('../utils/customErrorUtil');
+const jwt = require("jsonwebtoken");
+const CustomError = require("../utils/customErrorUtil");
 const { JWT_PRIVATE_KEY } = require("../config/config");
 
 module.exports = (req, res, next) => {
