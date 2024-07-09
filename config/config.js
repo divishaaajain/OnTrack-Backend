@@ -6,5 +6,6 @@ module.exports = {
     MONGODB_PASSWORD: process.env.MONGODB_PASSWORD,
     MONGODB_USER: process.env.MONGODB_USER,
     MONGODB_APP_NAME: process.env.MONGODB_APP_NAME,
-    MONGODB_DBNAME: process.env.MONGODB_DBNAME
+    MONGODB_DBNAME: process.env.MONGODB_DBNAME,
+    JWT_PRIVATE_KEY: process.env.JWT_PRIVATE_KEY
 };

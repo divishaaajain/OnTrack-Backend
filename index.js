@@ -1,7 +1,7 @@
 const http = require("http");
 const app = require("./app"); // express app
-const { PORT } = require("./config");
-const { mongoDBClient } = require("./utils/database");
+const { PORT } = require("./config/config");
+const { mongoDBClient } = require("./config/database");
 
 // Function to start the server
 const startServer = () => {

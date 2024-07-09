@@ -1,6 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const itemRouter = require('./routes/itemRouter');
+const express = require("express");
+const cors = require("cors");
+const itemRouter = require("./routes/itemRouter");
+const errorHandler = require("./middleware/errorHandlingMiddleware");
 
 const app = express();
 
@@ -10,5 +11,6 @@ app.use(cors());
 
 // Routes
 app.use(itemRouter);
+app.use(errorHandler);
 
 module.exports = app;

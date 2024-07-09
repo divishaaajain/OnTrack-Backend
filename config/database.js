@@ -4,7 +4,7 @@ const {
     MONGODB_USER,
     MONGODB_APP_NAME,
     MONGODB_DBNAME
-} = require("../config");
+} = require("./config");
 
 const MongoClient = require("mongodb").MongoClient;
 
