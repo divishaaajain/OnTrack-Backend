@@ -41,7 +41,7 @@ const postSignup = async ({ userDetails: userDetails }) => {
         throw error;
     }
 
-    return "User registered successfully"
+    return "User registered successfully";
 };
 
 const postLogin = async ({ }) => {
