@@ -69,14 +69,14 @@ const postLogin = async ({ userDetails }) => {
 
         const token = jwt.sign({
             email: user.email,
-            user_id: user.user_id.toString()
+            user_id: user._id.toString()
         }, `${JWT_PRIVATE_KEY}`, {
             expiresIn: '1h'
         });
 
         return {
             message: "User logged in",
-            user_id: user.user_id.toString(),
+            user_id: user.user_id,
             token: token
         };
 

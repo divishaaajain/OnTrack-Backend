@@ -51,8 +51,30 @@ const validateFields = async (req, res, next) => {
                         }
                         return true;
                     });
-
-            // Add more cases as needed for other fields
+            case "name":
+                return body(field)
+                    .trim()
+                    .isString()
+                    .isLength({ min: 3, max: 100 })
+                    .withMessage('Title must be between 3 to 30 characters')
+                    .not().isEmpty()
+                    .withMessage('Title not provided');
+            case "description":
+                return body(field)
+                    .trim()
+                    .isString()
+                    .isLength({ min: 5, max: 300 })
+                    .withMessage('Description must be between 5 to 200 characters')
+                    .not().isEmpty()
+                    .withMessage('Description not provided');
+            case "price":
+                return body(field)
+                    .isNumeric()
+                    .not().isEmpty();
+            case "quantity":
+                return body(field)
+                    .isNumeric()
+                    .not().isEmpty()
             default:
                 return null;
         }
