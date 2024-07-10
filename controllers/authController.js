@@ -4,7 +4,7 @@ const CustomError = require("../utils/customErrorUtil");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const postSignup = async ({ userDetails: userDetails }) => {
+const postSignup = async ({ userDetails }) => {
     const storageDB = mongoDBClient.db;
 
     try {
@@ -44,7 +44,7 @@ const postSignup = async ({ userDetails: userDetails }) => {
     return "User registered successfully";
 };
 
-const postLogin = async ({ }) => {
+const postLogin = async ({ userDetails }) => {
     const storageDB = mongoDBClient.db;
 
     let user;
