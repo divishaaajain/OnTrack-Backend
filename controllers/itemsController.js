@@ -3,6 +3,7 @@ const CustomError = require("../utils/customErrorUtil");
 const { ObjectId } = require('mongodb');
 const Item = require("../models/itemsModel");
 const collections = require("../constants/collectionNames");
+const responseMessages = require("../constants/responseMessages");
 
 const addItem = async ({ itemDetails, user_id }) => {
     const storageDB = mongoDBClient.db;
@@ -23,7 +24,7 @@ const addItem = async ({ itemDetails, user_id }) => {
         throw error;
     }
 
-    return "Item added successfully";
+    return responseMessages.item.add;
 };
 
 const getItems = async () => {
@@ -96,7 +97,7 @@ const updateItem = async ({ user_id, item_id, updatedDetails }) => {
         throw error;
     }
 
-    return "Item updated successfully";
+    return responseMessages.item.update;
 };
 
 const deleteItem = async ({ user_id, item_id }) => {
@@ -127,7 +128,7 @@ const deleteItem = async ({ user_id, item_id }) => {
         throw error;
     }
 
-    return "Item deleted successfully";
+    return responseMessages.item.delete;
 };
 
 module.exports = { addItem, getItems, getItem, updateItem, deleteItem };

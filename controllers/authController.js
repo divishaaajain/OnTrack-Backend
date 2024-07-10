@@ -5,6 +5,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const collections = require("../constants/collectionNames");
+const responseMessages = require("../constants/responseMessages");
 
 const postSignup = async ({ userDetails }) => {
     const storageDB = mongoDBClient.db;
@@ -43,7 +44,7 @@ const postSignup = async ({ userDetails }) => {
         throw error;
     }
 
-    return "User registered successfully";
+    return responseMessages.user.add;
 };
 
 const postLogin = async ({ userDetails }) => {
@@ -77,7 +78,7 @@ const postLogin = async ({ userDetails }) => {
         });
 
         return {
-            message: "User logged in",
+            message: responseMessages.user.login,
             user_id: user.user_id,
             token: token
         };
