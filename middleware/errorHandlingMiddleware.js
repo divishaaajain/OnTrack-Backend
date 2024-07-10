@@ -1,8 +1,6 @@
 const CustomError = require("../utils/customErrorUtil");
 
 const errorHandler = (err, req, res, next) => {
-    console.error('Error:', err.message);
-
     let statusCode = 500; // Default status code
 
     // Check if error is an instance of CustomError
