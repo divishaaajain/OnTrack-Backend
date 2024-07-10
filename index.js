@@ -25,7 +25,11 @@ const connectMongoDB = async () => {
 // Connect to both MongoDB and MySQL, then start the server
 const connectDatabasesAndStartServer = async () => {
     try {
-        await Promise.all([connectMongoDB(), connectMySQL()]);
+        await Promise.all([
+            connectMongoDB(), 
+            // uncomment the line below to connect to MySQL, if you have successfully added the sql configs and started the SQL local server
+            // connectMySQL()
+        ]);
         startServer();
     } catch (error) {
         console.error('Failed to start server due to database connection error:', error);

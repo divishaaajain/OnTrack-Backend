@@ -1,3 +1,4 @@
+// Uncomment line 31 in index.js file if you have successfully added the sql configs and started the SQL local server, to perform further operations.
 const express = require("express");
 const { addOrder, getOrders, getOrder, deleteOrder } = require("../controllers/orderController");
 const auth = require("../middleware/authMiddleware");
