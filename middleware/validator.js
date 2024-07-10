@@ -87,6 +87,7 @@ const validateFields = async (req, res, next) => {
     if (!errors.isEmpty()) {
         const error = new CustomError(errors.array()[0].msg, 422);
         error.data = errors.array();
+        
         return next(error);
     }
 
