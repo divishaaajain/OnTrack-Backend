@@ -3,6 +3,6 @@ class CustomError extends Error {
         super(message);
         this.statusCode = statusCode;
     }
-}
+};
 
 module.exports = CustomError;
