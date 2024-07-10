@@ -7,6 +7,10 @@ const responseMessages = {
         add: "Item added successfully",
         update: "Item updated successfully",
         delete: "Item delete successfully"
+    },
+    order: {
+        add: "Order created successfully",
+        delete: "Order deleted successfully"
     }
 };
 
