@@ -193,7 +193,7 @@ curl --location --request DELETE 'http://localhost:3000/item/668ec94d9438839a2b6
 
 ## Additional Features (for extra points 😉)
 
-# Uncomment line 30 in index.js file if you have successfully added the sql configs and started the SQL local server, to perform further operations.
+# Uncomment line 31 in index.js file if you have successfully added the sql configs and started the SQL local server, to perform further operations.
 
 - Have integrated MySQL to add some additional features to the above app.
 - User can place order for multiple items, can get information about one order, and can get all their previous orders and delete an order.
