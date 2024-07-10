@@ -2,6 +2,7 @@ const { mongoDBClient } = require("../config/database");
 const CustomError = require("../utils/customErrorUtil");
 const { ObjectId } = require('mongodb');
 const Item = require("../models/itemsModel");
+const collections = require("../constants/collectionNames");
 
 const addItem = async ({ itemDetails, user_id }) => {
     const storageDB = mongoDBClient.db;
@@ -16,7 +17,7 @@ const addItem = async ({ itemDetails, user_id }) => {
 
     try {
         await storageDB
-            .collection('items')
+            .collection(collections.items)
             .insertOne(item);
     } catch (error) {
         throw error;
@@ -31,7 +32,7 @@ const getItems = async () => {
     let items;
     try {
         items = await storageDB
-            .collection('items')
+            .collection(collections.items)
             .find()
             .toArray();
     } catch (error) {
@@ -51,7 +52,7 @@ const getItem = async ({ item_id }) => {
     let item;
     try {
         item = await storageDB
-            .collection('items')
+            .collection(collections.items)
             .findOne({ _id: new ObjectId(item_id) });
     } catch (error) {
         throw error;
@@ -70,7 +71,7 @@ const updateItem = async ({ user_id, item_id, updatedDetails }) => {
     let item;
     try {
         item = await storageDB
-            .collection('items')
+            .collection(collections.items)
             .findOne({ _id: new ObjectId(item_id) });
     } catch (error) {
         throw error;
@@ -86,7 +87,7 @@ const updateItem = async ({ user_id, item_id, updatedDetails }) => {
 
     try {
         await storageDB
-            .collection('items')
+            .collection(collections.items)
             .updateOne(
                 { _id: new ObjectId(item_id) },
                 { $set: updatedDetails }
@@ -104,7 +105,7 @@ const deleteItem = async ({ user_id, item_id }) => {
     let item;
     try {
         item = await storageDB
-            .collection('items')
+            .collection(collections.items)
             .findOne({ _id: new ObjectId(item_id) });
     } catch (error) {
         throw error;
@@ -120,7 +121,7 @@ const deleteItem = async ({ user_id, item_id }) => {
 
     try {
         await storageDB
-            .collection('items')
+            .collection(collections.items)
             .deleteOne({ _id: new ObjectId(item_id) });
     } catch (error) {
         throw error;

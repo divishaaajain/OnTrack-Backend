@@ -4,13 +4,14 @@ const CustomError = require("../utils/customErrorUtil");
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const collections = require("../constants/collectionNames");
 
 const postSignup = async ({ userDetails }) => {
     const storageDB = mongoDBClient.db;
 
     try {
         const user = await storageDB
-            .collection('users')
+            .collection(collections.users)
             .findOne({ email: userDetails.email })
 
         if (user) {
@@ -36,7 +37,7 @@ const postSignup = async ({ userDetails }) => {
 
     try {
         await storageDB
-            .collection('users')
+            .collection(collections.users)
             .insertOne(user);
     } catch (error) {
         throw error;
@@ -51,7 +52,7 @@ const postLogin = async ({ userDetails }) => {
     let user;
     try {
         user = await storageDB
-            .collection('users')
+            .collection(collections.users)
             .findOne({ email: userDetails.email })
     } catch (error) {
         throw error;
