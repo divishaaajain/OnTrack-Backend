@@ -1,6 +1,7 @@
 const { JWT_PRIVATE_KEY } = require("../config/config");
 const { mongoDBClient } = require("../config/database");
 const CustomError = require("../utils/customErrorUtil");
+const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -26,12 +27,12 @@ const postSignup = async ({ userDetails }) => {
         throw error;
     }
 
-    const user = {
+    const user = new User({
         email: userDetails.email,
         username: userDetails.username,
         phone: userDetails.phone,
         password: hashedPassword
-    };
+    });
 
     try {
         await storageDB
