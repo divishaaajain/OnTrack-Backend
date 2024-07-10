@@ -78,7 +78,7 @@ const validateFields = async (req, res, next) => {
             default:
                 return null;
         }
-    });
+    }).filter(validation => validation !== null);
 
     await Promise.all(validationRules.map(validation => validation.run(req)));
 

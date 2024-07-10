@@ -1,17 +1,18 @@
 const { mongoDBClient } = require("../config/database");
 const CustomError = require("../utils/customErrorUtil");
 const { ObjectId } = require('mongodb');
+const Item = require("../models/itemsModel");
 
 const addItem = async ({ itemDetails, user_id }) => {
     const storageDB = mongoDBClient.db;
 
-    const item = {
+    const item = new Item({
         user_id: user_id,
         name: itemDetails.name,
         description: itemDetails.description,
         price: itemDetails.price,
         quantity: itemDetails.quantity
-    };
+    });
 
     try {
         await storageDB
