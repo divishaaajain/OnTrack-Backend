@@ -1,5 +1,5 @@
 const { JWT_PRIVATE_KEY } = require("../config/config");
-const { mongoDBClient } = require("../config/database");
+const { mongoDBClient } = require("../config/mongoDbDatabase");
 const CustomError = require("../utils/customErrorUtil");
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
@@ -29,11 +29,15 @@ const postSignup = async ({ userDetails }) => {
         throw error;
     }
 
+    const date = new Date();
+
     const user = new User({
         email: userDetails.email,
         username: userDetails.username,
         phone: userDetails.phone,
-        password: hashedPassword
+        password: hashedPassword,
+        createdAt: date,
+        updatedAt: date
     });
 
     try {
