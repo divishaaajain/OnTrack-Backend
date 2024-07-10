@@ -1,7 +1,8 @@
 const http = require("http");
 const app = require("./app"); // express app
 const { PORT } = require("./config/config");
-const { mongoDBClient } = require("./config/database");
+const { mongoDBClient } = require("./config/mongoDbDatabase");
+const { connectMySQL } = require("./config/mysqlDatabase");
 
 // Function to start the server
 const startServer = () => {
@@ -11,13 +12,25 @@ const startServer = () => {
     });
 };
 
-// Connect to MongoDB and start the server
-mongoDBClient.initiateDb()
-    .then(() => {
-        console.log('Database connection successful');
+const connectMongoDB = async () => {
+    try {
+        await mongoDBClient.initiateDb();
+        console.log('Connected to MongoDB successfully.');
+    } catch (error) {
+        console.error('Failed to connect to MongoDB:', error);
+        throw error;
+    }
+};
+
+// Connect to both MongoDB and MySQL, then start the server
+const connectDatabasesAndStartServer = async () => {
+    try {
+        await Promise.all([connectMongoDB(), connectMySQL()]);
         startServer();
-    })
-    .catch((error) => {
+    } catch (error) {
         console.error('Failed to start server due to database connection error:', error);
-        process.exit(1); // Exit process with failure
-    });
+        process.exit(1);
+    }
+};
+
+connectDatabasesAndStartServer();
