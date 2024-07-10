@@ -1,4 +1,4 @@
-const { mongoDBClient } = require("../config/database");
+const { mongoDBClient } = require("../config/mongoDbDatabase");
 const CustomError = require("../utils/customErrorUtil");
 const { ObjectId } = require('mongodb');
 const Item = require("../models/itemsModel");
@@ -7,13 +7,16 @@ const responseMessages = require("../constants/responseMessages");
 
 const addItem = async ({ itemDetails, user_id }) => {
     const storageDB = mongoDBClient.db;
+    const date = new Date();
 
     const item = new Item({
         user_id: user_id,
         name: itemDetails.name,
         description: itemDetails.description,
         price: itemDetails.price,
-        quantity: itemDetails.quantity
+        quantity: itemDetails.quantity,
+        createdAt: date,
+        updatedAt: date
     });
 
     try {
@@ -85,6 +88,8 @@ const updateItem = async ({ user_id, item_id, updatedDetails }) => {
     if (item.user_id.toString() !== user_id) {
         throw new CustomError("Unauthorized", 401);
     }
+
+    updatedDetails = { ...updatedDetails, updatedAt: new Date() };
 
     try {
         await storageDB
